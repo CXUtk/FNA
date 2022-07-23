@@ -90,6 +90,24 @@ namespace Microsoft.Xna.Framework.Graphics
 				
 		public static IntPtr FNA3D_CreateTextureCube(IntPtr device, SurfaceFormat format, int size, int levelCount, byte isRenderTarget) { CheckThread(); return FNA3D_Impl.FNA3D_CreateTextureCube(device, format, size, levelCount, isRenderTarget); }
 
+		public static IntPtr FNA3D_GenComputeBuffer(IntPtr device, byte dynamic, ComputeBufferType type, BufferUsage usage, int elementCount, int strideSize) { CheckThread(); return FNA3D_Impl.FNA3D_GenComputeBuffer(device, dynamic, type, usage, elementCount, strideSize); }
+
+		public static void FNA3D_Dispatch(IntPtr device,
+			int threadGroupCountX,
+			int threadGroupCountY,
+			int threadGroupCountZ)
+		{
+			CheckThread();
+			FNA3D_Impl.FNA3D_Dispatch(device, threadGroupCountX, threadGroupCountY, threadGroupCountZ);
+		}
+
+		public static void FNA3D_ApplyComputeShader(IntPtr device, IntPtr shader)
+		{
+			CheckThread();
+			FNA3D_Impl.FNA3D_ApplyComputeShader(device, shader);
+		}
+
+
 		public static void FNA3D_AddDisposeTexture(IntPtr device, IntPtr texture) { CheckThread(); FNA3D_Impl.FNA3D_AddDisposeTexture(device, texture); }
 
 		public static void FNA3D_SetTextureData2D(IntPtr device, IntPtr texture, int x, int y, int w, int h, int level, IntPtr data, int dataLength) { CheckThread(); FNA3D_Impl.FNA3D_SetTextureData2D(device, texture, x, y, w, h, level, data, dataLength); }

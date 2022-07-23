@@ -693,6 +693,30 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		#endregion
 
+		#region Compute
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FNA3D_Dispatch(
+			IntPtr device,
+			int threadGroupCountX,
+			int threadGroupCountY,
+			int threadGroupCountZ
+		);
+
+		/* IntPtr refers to an FNA3D_Buffer* */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr FNA3D_GenComputeBuffer(
+			IntPtr device,
+			byte dynamic,
+			ComputeBufferType type,
+			BufferUsage usage,
+			int elementCount,
+			int strideSize
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FNA3D_ApplyComputeShader(IntPtr device, IntPtr shader);
+		#endregion
+
 		#region Effects
 
 		/* IntPtr refers to an FNA3D_Effect* */

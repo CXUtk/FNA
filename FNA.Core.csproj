@@ -133,6 +133,10 @@
 		<Compile Include="src\Design\Vector4Converter.cs" />
 		<Compile Include="src\DisplayOrientation.cs" />
 		<Compile Include="src\DrawableGameComponent.cs" />
+		<Compile Include="src\Graphics\Compute\ComputeBuffer.cs" />
+		<Compile Include="src\Graphics\Compute\ComputeBufferMode.cs" />
+		<Compile Include="src\Graphics\Compute\ComputeBufferType.cs" />
+		<Compile Include="src\Graphics\Compute\ComputeShader.cs" />
 		<Compile Include="src\ThreadCheck.cs" />
 		<Compile Include="src\FNALoggerEXT.cs" />
 		<Compile Include="src\FNAPlatform\FNAPlatform.cs" />
