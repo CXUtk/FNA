@@ -1454,6 +1454,14 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		#endregion
 
+		#region Dispatch Compute
+		public void Dispatch(ComputeShader computeShader, int threadGroupsX, int threadGroupsY, int threadGroupsZ)
+		{
+			FNA3D.FNA3D_ApplyComputeShader(GLDevice, computeShader.glComputeShader);
+			FNA3D.FNA3D_Dispatch(GLDevice, threadGroupsX, threadGroupsY, threadGroupsZ);
+		}
+		#endregion
+
 		#region FNA Extensions
 
 		public void SetStringMarkerEXT(string text)

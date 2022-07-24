@@ -107,6 +107,23 @@ namespace Microsoft.Xna.Framework.Graphics
 			FNA3D_Impl.FNA3D_ApplyComputeShader(device, shader);
 		}
 
+		public static void FNA3D_CreateComputeShader(IntPtr device,
+			byte[] shaderCode,
+			int length,
+			string entryPoint,
+			string shaderModel,
+			out IntPtr shader)
+		{
+			CheckThread();
+			FNA3D_Impl.FNA3D_CreateComputeShader(device, shaderCode, length, entryPoint, shaderModel, out shader);
+		}
+
+		public static void FNA3D_AddDisposeComputeBuffer(IntPtr device,
+			IntPtr buffer)
+		{
+			CheckThread();
+			FNA3D_Impl.FNA3D_AddDisposeComputeBuffer(device, buffer);
+		}
 
 		public static void FNA3D_AddDisposeTexture(IntPtr device, IntPtr texture) { CheckThread(); FNA3D_Impl.FNA3D_AddDisposeTexture(device, texture); }
 

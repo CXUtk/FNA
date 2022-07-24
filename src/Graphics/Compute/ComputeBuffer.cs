@@ -47,5 +47,18 @@ namespace Microsoft.Xna.Framework.Graphics
 				count,
 				stride);
 		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (!IsDisposed)
+			{
+				FNA3D.FNA3D_AddDisposeComputeBuffer(
+					GraphicsDevice.GLDevice,
+					buffer
+				);
+			}
+			base.Dispose(disposing);
+		}
+
 	}
 }

@@ -714,7 +714,23 @@ namespace Microsoft.Xna.Framework.Graphics
 		);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void FNA3D_ApplyComputeShader(IntPtr device, IntPtr shader);
+		public static extern void FNA3D_ApplyComputeShader(
+			IntPtr device,
+			IntPtr shader);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FNA3D_CreateComputeShader(
+			IntPtr device,
+			byte[] shaderCode,
+			int length,
+			string entryPoint,
+			string shaderModel,
+			out IntPtr shader);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FNA3D_AddDisposeComputeBuffer(
+			IntPtr device,
+			IntPtr buffer);
 		#endregion
 
 		#region Effects
