@@ -165,10 +165,10 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public static void FNA3D_CreateEffect(IntPtr device, byte[] effectCode, int length, out IntPtr effect, out IntPtr effectData) { CheckThread(); FNA3D_Impl.FNA3D_CreateEffect(device, effectCode, length, out effect, out effectData); }
 
-		public static void FNA3D_CreateNewEffect(IntPtr device, string effectBinaryPath, out IntPtr effect)
+		public static void FNA3D_CreateNewEffect(IntPtr device, byte[] effectBinaryCode, uint effectBinaryLength, out IntPtr effect)
 		{
 			CheckThread();
-			FNA3D_Impl.FNA3D_CreateNewEffect(device, effectBinaryPath, out effect);
+			FNA3D_Impl.FNA3D_CreateNewEffect(device, effectBinaryCode, effectBinaryLength, out effect);
 		}
 
 		public static void FNA3D_CloneEffect(IntPtr device, IntPtr cloneSource, out IntPtr effect, out IntPtr effectData) { CheckThread(); FNA3D_Impl.FNA3D_CloneEffect(device, cloneSource, out effect, out effectData); }

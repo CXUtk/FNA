@@ -739,7 +739,8 @@ namespace Microsoft.Xna.Framework.Graphics
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void FNA3D_CreateNewEffect(
 			IntPtr device,
-			string shaderBinaryPath,
+			byte[] effectBinaryCode,
+			uint effectCodeLength,
 			out IntPtr shader);
 
 		/* IntPtr refers to an FNA3D_Effect* */
