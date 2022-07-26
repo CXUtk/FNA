@@ -10,16 +10,13 @@ namespace Microsoft.Xna.Framework.Graphics
 	{
 		internal IntPtr glComputeShader;
 
-		public ComputeShader(GraphicsDevice graphicsDevice, byte[] shaderCode, string entryPoint)
+		public ComputeShader(GraphicsDevice graphicsDevice, string shaderPath, string entryPoint)
 		{
 			GraphicsDevice = graphicsDevice;
 
-			FNA3D.FNA3D_CreateComputeShader(
+			FNA3D.FNA3D_CreateNewEffect(
 				graphicsDevice.GLDevice,
-				shaderCode,
-				shaderCode.Length,
-				entryPoint,
-				"cs_5_0",
+				shaderPath,
 				out glComputeShader
 			);
 		}

@@ -107,16 +107,16 @@ namespace Microsoft.Xna.Framework.Graphics
 			FNA3D_Impl.FNA3D_ApplyComputeShader(device, shader);
 		}
 
-		public static void FNA3D_CreateComputeShader(IntPtr device,
-			byte[] shaderCode,
-			int length,
-			string entryPoint,
-			string shaderModel,
-			out IntPtr shader)
-		{
-			CheckThread();
-			FNA3D_Impl.FNA3D_CreateComputeShader(device, shaderCode, length, entryPoint, shaderModel, out shader);
-		}
+		//public static void FNA3D_CreateComputeShader(IntPtr device,
+		//	byte[] shaderCode,
+		//	int length,
+		//	string entryPoint,
+		//	string shaderModel,
+		//	out IntPtr shader)
+		//{
+		//	CheckThread();
+		//	FNA3D_Impl.FNA3D_CreateComputeShader(device, shaderCode, length, entryPoint, shaderModel, out shader);
+		//}
 
 		public static void FNA3D_AddDisposeComputeBuffer(IntPtr device,
 			IntPtr buffer)
@@ -164,6 +164,12 @@ namespace Microsoft.Xna.Framework.Graphics
 		public static void FNA3D_GetIndexBufferData(IntPtr device, IntPtr buffer, int offsetInBytes, IntPtr data, int dataLength) { CheckThread(); FNA3D_Impl.FNA3D_GetIndexBufferData(device, buffer, offsetInBytes, data, dataLength); }
 
 		public static void FNA3D_CreateEffect(IntPtr device, byte[] effectCode, int length, out IntPtr effect, out IntPtr effectData) { CheckThread(); FNA3D_Impl.FNA3D_CreateEffect(device, effectCode, length, out effect, out effectData); }
+
+		public static void FNA3D_CreateNewEffect(IntPtr device, string effectBinaryPath, out IntPtr effect)
+		{
+			CheckThread();
+			FNA3D_Impl.FNA3D_CreateNewEffect(device, effectBinaryPath, out effect);
+		}
 
 		public static void FNA3D_CloneEffect(IntPtr device, IntPtr cloneSource, out IntPtr effect, out IntPtr effectData) { CheckThread(); FNA3D_Impl.FNA3D_CloneEffect(device, cloneSource, out effect, out effectData); }
 

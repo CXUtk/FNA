@@ -718,14 +718,14 @@ namespace Microsoft.Xna.Framework.Graphics
 			IntPtr device,
 			IntPtr shader);
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void FNA3D_CreateComputeShader(
-			IntPtr device,
-			byte[] shaderCode,
-			int length,
-			string entryPoint,
-			string shaderModel,
-			out IntPtr shader);
+		//[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		//public static extern void FNA3D_CreateComputeShader(
+		//	IntPtr device,
+		//	byte[] shaderCode,
+		//	int length,
+		//	string entryPoint,
+		//	string shaderModel,
+		//	out IntPtr shader);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void FNA3D_AddDisposeComputeBuffer(
@@ -734,6 +734,13 @@ namespace Microsoft.Xna.Framework.Graphics
 		#endregion
 
 		#region Effects
+
+		/* IntPtr refers to an FNA3D_Effect_New* */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FNA3D_CreateNewEffect(
+			IntPtr device,
+			string shaderBinaryPath,
+			out IntPtr shader);
 
 		/* IntPtr refers to an FNA3D_Effect* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
