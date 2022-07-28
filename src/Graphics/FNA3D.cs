@@ -799,6 +799,26 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		#endregion
 
+		#region FX11
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Pass_Apply(
+			IntPtr device,
+			IntPtr pass
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(
+			IntPtr variable,
+			IntPtr computeBuffer
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(
+			IntPtr variable,
+			IntPtr computeBuffer
+		);
+		#endregion
+
 		#region Queries
 
 		/* IntPtr refers to an FNA3D_Query* */
@@ -1129,6 +1149,50 @@ namespace Microsoft.Xna.Framework.Graphics
 			}
 		}
 
+		#endregion
+
+		#region FX11_Safe
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr FX11_Effect_GetVariableByName(
+			IntPtr effect,
+			string name
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr FX11_Effect_GetVariableByIndex(
+			IntPtr effect,
+			uint index
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr FX11_Effect_GetVariableBySemantic(
+			IntPtr effect,
+			string semantic
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr FX11_Effect_GetTechniqueByIndex(
+			IntPtr effect,
+			uint index
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr FX11_Effect_GetTechniqueByName(
+			IntPtr effect,
+			string name
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr FX11_Effect_Technique_GetPassByIndex(
+			IntPtr technique,
+			uint index
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr FX11_Effect_Technique_GetPassByName(
+			IntPtr technique,
+			string name
+		);
 		#endregion
 	}
 }

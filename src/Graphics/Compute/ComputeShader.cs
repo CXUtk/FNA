@@ -22,9 +22,16 @@ namespace Microsoft.Xna.Framework.Graphics
 			);
 		}
 
-		public void SetBuffer(string name, ComputeBuffer buffer)
+		public ComputeTechnique GetTechnique(string name)
 		{
-			
+			IntPtr technique = FNA3D.FX11_Effect_GetTechniqueByName(glComputeShader, name);
+			return new ComputeTechnique(this, technique);
+		}
+
+		public ComputeParameter GetParameter(string name)
+		{
+			IntPtr variable = FNA3D.FX11_Effect_GetVariableByName(glComputeShader, name);
+			return new ComputeParameter(this, variable);
 		}
 	}
 }

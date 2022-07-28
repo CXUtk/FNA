@@ -208,5 +208,32 @@ namespace Microsoft.Xna.Framework.Graphics
 		public static int FNA3D_GetMaxMultiSampleCount(IntPtr device, SurfaceFormat format, int preferredMultiSampleCount) { CheckThread(); return FNA3D_Impl.FNA3D_GetMaxMultiSampleCount(device, format, preferredMultiSampleCount); }
 
 		public static byte FNA3D_SupportsSRGBRenderTargets(IntPtr device) { CheckThread(); return FNA3D_Impl.FNA3D_SupportsSRGBRenderTargets(device); }
+
+		public static void FX11_Effect_Pass_Apply(
+			IntPtr device,
+			IntPtr pass
+		)
+		{
+			CheckThread();
+			FNA3D_Impl.FX11_Effect_Pass_Apply(device, pass);
+		}
+
+		public static void FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(
+			IntPtr variable,
+			IntPtr computeBuffer
+		)
+		{
+			CheckThread();
+			FNA3D_Impl.FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(variable, computeBuffer);
+		}
+
+		public static void FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(
+			IntPtr variable,
+			IntPtr computeBuffer
+		)
+		{
+			CheckThread();
+			FNA3D_Impl.FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(variable, computeBuffer);
+		}
 	}
 }
