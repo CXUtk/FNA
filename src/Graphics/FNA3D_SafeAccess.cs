@@ -235,5 +235,14 @@ namespace Microsoft.Xna.Framework.Graphics
 			CheckThread();
 			FNA3D_Impl.FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(variable, computeBuffer);
 		}
+
+		public static void FX11_Effect_Variable_SetInt(
+			IntPtr variable,
+			int value
+		)
+		{
+			CheckThread();
+			FNA3D_Impl.FX11_Effect_Variable_SetInt(variable, value);
+		}
 	}
 }

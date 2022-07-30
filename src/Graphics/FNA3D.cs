@@ -817,6 +817,12 @@ namespace Microsoft.Xna.Framework.Graphics
 			IntPtr variable,
 			IntPtr computeBuffer
 		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetInt(
+			IntPtr variable,
+			int value
+		);
 		#endregion
 
 		#region Queries

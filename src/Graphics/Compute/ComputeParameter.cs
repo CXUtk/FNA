@@ -19,7 +19,14 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public void SetBuffer(ComputeBuffer buffer)
 		{
+			// FNA3D.FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(variablePtr, buffer.buffer);
 			FNA3D.FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(variablePtr, buffer.buffer);
+		}
+
+		public void SetInt(int value)
+		{
+			// FNA3D.FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(variablePtr, buffer.buffer);
+			FNA3D.FX11_Effect_Variable_SetInt(variablePtr, value);
 		}
 	}
 }

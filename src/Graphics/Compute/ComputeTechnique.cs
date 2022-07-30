@@ -39,7 +39,7 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public ComputePass GetPassByName(string name)
 		{
-			IntPtr pass =  FNA3D.FX11_Effect_Technique_GetPassByName(techniquePointer, name);
+			IntPtr pass = FNA3D.FX11_Effect_Technique_GetPassByName(techniquePointer, name);
 			return new ComputePass(parentEffect, techniquePointer, pass);
 		}
 	}
