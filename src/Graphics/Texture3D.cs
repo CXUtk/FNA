@@ -47,7 +47,26 @@ namespace Microsoft.Xna.Framework.Graphics
 			int depth,
 			bool mipMap,
 			SurfaceFormat format
-		) {
+		) : this(
+			graphicsDevice,
+			width,
+			height,
+			depth,
+			mipMap,
+			format,
+			false) {
+		}
+
+		public Texture3D(
+			GraphicsDevice graphicsDevice,
+			int width,
+			int height,
+			int depth,
+			bool mipMap,
+			SurfaceFormat format,
+			bool isRandomAccess
+		)
+		{
 			if (graphicsDevice == null)
 			{
 				throw new ArgumentNullException("graphicsDevice");
@@ -59,6 +78,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			Depth = depth;
 			LevelCount = mipMap ? CalculateMipLevels(width, height) : 1;
 			Format = format;
+			IsRandomAccess = isRandomAccess;
 
 			texture = FNA3D.FNA3D_CreateTexture3D(
 				GraphicsDevice.GLDevice,
@@ -66,7 +86,8 @@ namespace Microsoft.Xna.Framework.Graphics
 				Width,
 				Height,
 				Depth,
-				LevelCount
+				LevelCount,
+				(byte)(IsRandomAccess ? 1 : 0)
 			);
 		}
 

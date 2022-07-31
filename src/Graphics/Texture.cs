@@ -30,6 +30,12 @@ namespace Microsoft.Xna.Framework.Graphics
 			protected set;
 		}
 
+		public bool IsRandomAccess
+		{
+			get;
+			protected set;
+		}
+
 		#endregion
 
 		#region Internal FNA3D Variables

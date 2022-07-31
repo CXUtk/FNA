@@ -84,9 +84,9 @@ namespace Microsoft.Xna.Framework.Graphics
 				
 		public static int FNA3D_GetBackbufferMultiSampleCount(IntPtr device) { CheckThread(); return FNA3D_Impl.FNA3D_GetBackbufferMultiSampleCount(device); }
 
-		public static IntPtr FNA3D_CreateTexture2D(IntPtr device, SurfaceFormat format, int width, int height, int levelCount, byte isRenderTarget) { CheckThread(); return FNA3D_Impl.FNA3D_CreateTexture2D(device, format, width, height, levelCount, isRenderTarget); }
+		public static IntPtr FNA3D_CreateTexture2D(IntPtr device, SurfaceFormat format, int width, int height, int levelCount, byte isRenderTarget, byte isRandomAccess) { CheckThread(); return FNA3D_Impl.FNA3D_CreateTexture2D(device, format, width, height, levelCount, isRenderTarget, isRandomAccess); }
 				
-		public static IntPtr FNA3D_CreateTexture3D(IntPtr device, SurfaceFormat format, int width, int height, int depth, int levelCount) { CheckThread(); return FNA3D_Impl.FNA3D_CreateTexture3D(device, format, width, height, depth, levelCount); }
+		public static IntPtr FNA3D_CreateTexture3D(IntPtr device, SurfaceFormat format, int width, int height, int depth, int levelCount, byte isRandomAccess) { CheckThread(); return FNA3D_Impl.FNA3D_CreateTexture3D(device, format, width, height, depth, levelCount, isRandomAccess); }
 				
 		public static IntPtr FNA3D_CreateTextureCube(IntPtr device, SurfaceFormat format, int size, int levelCount, byte isRenderTarget) { CheckThread(); return FNA3D_Impl.FNA3D_CreateTextureCube(device, format, size, levelCount, isRenderTarget); }
 
@@ -216,33 +216,6 @@ namespace Microsoft.Xna.Framework.Graphics
 		{
 			CheckThread();
 			FNA3D_Impl.FX11_Effect_Pass_Apply(device, pass);
-		}
-
-		public static void FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(
-			IntPtr variable,
-			IntPtr computeBuffer
-		)
-		{
-			CheckThread();
-			FNA3D_Impl.FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(variable, computeBuffer);
-		}
-
-		public static void FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(
-			IntPtr variable,
-			IntPtr computeBuffer
-		)
-		{
-			CheckThread();
-			FNA3D_Impl.FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(variable, computeBuffer);
-		}
-
-		public static void FX11_Effect_Variable_SetInt(
-			IntPtr variable,
-			int value
-		)
-		{
-			CheckThread();
-			FNA3D_Impl.FX11_Effect_Variable_SetInt(variable, value);
 		}
 	}
 }

@@ -142,21 +142,24 @@ namespace Microsoft.Xna.Framework.Media
 				yWidth,
 				yHeight,
 				false,
-				SurfaceFormat.Alpha8
+				SurfaceFormat.Alpha8,
+				false
 			);
 			yuvTextures[1] = new Texture2D(
 				currentDevice,
 				uvWidth,
 				uvHeight,
 				false,
-				SurfaceFormat.Alpha8
+				SurfaceFormat.Alpha8,
+				false
 			);
 			yuvTextures[2] = new Texture2D(
 				currentDevice,
 				uvWidth,
 				uvHeight,
 				false,
-				SurfaceFormat.Alpha8
+				SurfaceFormat.Alpha8,
+				false
 			);
 
 			// Precalculate the viewport
@@ -647,7 +650,8 @@ namespace Microsoft.Xna.Framework.Media
 						SurfaceFormat.Color,
 						DepthFormat.None,
 						0,
-						RenderTargetUsage.PreserveContents
+						RenderTargetUsage.PreserveContents,
+						false
 					)
 				);
 				if (overlap.RenderTarget != null)

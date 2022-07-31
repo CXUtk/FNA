@@ -129,13 +129,39 @@ namespace Microsoft.Xna.Framework.Graphics
 			DepthFormat preferredDepthFormat,
 			int preferredMultiSampleCount,
 			RenderTargetUsage usage
+		) : this(
+			graphicsDevice,
+			width,
+			height,
+			mipMap,
+			preferredFormat,
+			preferredDepthFormat,
+			preferredMultiSampleCount,
+			usage,
+			false
+		){
+
+		}
+
+		public RenderTarget2D(
+			GraphicsDevice graphicsDevice,
+			int width,
+			int height,
+			bool mipMap,
+			SurfaceFormat preferredFormat,
+			DepthFormat preferredDepthFormat,
+			int preferredMultiSampleCount,
+			RenderTargetUsage usage,
+			bool isRandomAccess
 		) : base(
 			graphicsDevice,
 			width,
 			height,
 			mipMap,
-			preferredFormat
-		) {
+			preferredFormat,
+			isRandomAccess
+		)
+		{
 			DepthStencilFormat = preferredDepthFormat;
 			MultiSampleCount = FNA3D.FNA3D_GetMaxMultiSampleCount(
 				graphicsDevice.GLDevice,

@@ -452,7 +452,8 @@ namespace Microsoft.Xna.Framework.Graphics
 			int width,
 			int height,
 			int levelCount,
-			byte isRenderTarget
+			byte isRenderTarget,
+			byte isRandomAccess
 		);
 
 		/* IntPtr refers to an FNA3D_Texture* */
@@ -463,7 +464,8 @@ namespace Microsoft.Xna.Framework.Graphics
 			int width,
 			int height,
 			int depth,
-			int levelCount
+			int levelCount,
+			byte isRandomAccess
 		);
 
 		/* IntPtr refers to an FNA3D_Texture* */
@@ -804,24 +806,6 @@ namespace Microsoft.Xna.Framework.Graphics
 		public static extern void FX11_Effect_Pass_Apply(
 			IntPtr device,
 			IntPtr pass
-		);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(
-			IntPtr variable,
-			IntPtr computeBuffer
-		);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(
-			IntPtr variable,
-			IntPtr computeBuffer
-		);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void FX11_Effect_Variable_SetInt(
-			IntPtr variable,
-			int value
 		);
 		#endregion
 
@@ -1199,6 +1183,99 @@ namespace Microsoft.Xna.Framework.Graphics
 			IntPtr technique,
 			string name
 		);
+		#endregion
+
+		#region FX11_Parameters
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(
+			IntPtr variable,
+			IntPtr computeBuffer
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(
+			IntPtr variable,
+			IntPtr computeBuffer
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetUnorderedAccessView_Texture(
+			IntPtr variable,
+			IntPtr texture
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetShaderResourceView_Texture(
+			IntPtr variable,
+			IntPtr texture
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetInt(
+			IntPtr variable,
+			int value
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetBool(
+			IntPtr variable,
+			bool value
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetFloat(
+			IntPtr variable,
+			float value
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetIntArray(
+			IntPtr variable,
+			IntPtr data,
+			int offset,
+			int length
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetFloatArray(
+			IntPtr variable,
+			IntPtr data,
+			int offset,
+			int length
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetVectorf(
+			IntPtr variable,
+			IntPtr data
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetVectorb(
+			IntPtr variable,
+			IntPtr data
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetVectori(
+			IntPtr variable,
+			IntPtr data
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetMatrix4f(
+			IntPtr variable,
+			IntPtr data
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_Variable_SetRawData(
+			IntPtr variable,
+			IntPtr data,
+			int byteOffset,
+			int byteCount
+		);
+
 		#endregion
 	}
 }

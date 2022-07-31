@@ -62,7 +62,27 @@ namespace Microsoft.Xna.Framework.Graphics
 			int height,
 			bool mipMap,
 			SurfaceFormat format
-		) {
+		) : this(
+			graphicsDevice,
+			width,
+			height,
+			mipMap,
+			format,
+			false
+		)
+		{
+			
+		}
+
+		public Texture2D(
+			GraphicsDevice graphicsDevice,
+			int width,
+			int height,
+			bool mipMap,
+			SurfaceFormat format,
+			bool isRandomAccess
+		)
+		{
 			if (graphicsDevice == null)
 			{
 				throw new ArgumentNullException("graphicsDevice");
@@ -72,6 +92,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			Width = width;
 			Height = height;
 			LevelCount = mipMap ? CalculateMipLevels(width, height) : 1;
+			IsRandomAccess = isRandomAccess;
 
 			// TODO: Use QueryRenderTargetFormat!
 			if (this is IRenderTarget)
@@ -88,7 +109,7 @@ namespace Microsoft.Xna.Framework.Graphics
 						Format = format;
 					}
 				}
-				else if (	format != SurfaceFormat.Color &&
+				else if (format != SurfaceFormat.Color &&
 						format != SurfaceFormat.Rgba1010102 &&
 						format != SurfaceFormat.Rg32 &&
 						format != SurfaceFormat.Rgba64 &&
@@ -98,7 +119,7 @@ namespace Microsoft.Xna.Framework.Graphics
 						format != SurfaceFormat.HalfSingle &&
 						format != SurfaceFormat.HalfVector2 &&
 						format != SurfaceFormat.HalfVector4 &&
-						format != SurfaceFormat.HdrBlendable	)
+						format != SurfaceFormat.HdrBlendable)
 				{
 					// Not a renderable format period
 					Format = SurfaceFormat.Color;
@@ -119,7 +140,8 @@ namespace Microsoft.Xna.Framework.Graphics
 				Width,
 				Height,
 				LevelCount,
-				(byte) ((this is IRenderTarget) ? 1 : 0)
+				(byte)((this is IRenderTarget) ? 1 : 0),
+				(byte)(IsRandomAccess ? 1 : 0)
 			);
 		}
 
@@ -536,7 +558,8 @@ namespace Microsoft.Xna.Framework.Graphics
 				width,
 				height,
 				levels > 1,
-				format
+				format,
+				false
 			);
 
 			byte[] tex = null;
