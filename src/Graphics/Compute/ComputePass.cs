@@ -10,13 +10,13 @@ namespace Microsoft.Xna.Framework.Graphics
 	{
 		public string Name { get; private set; }
 		private ComputeShader parentEffect;
-		private IntPtr parentTechnique;
+		internal ComputeTechnique parentTechnique;
 		internal IntPtr pass;
 
 		internal ComputePass(
 			string name,
 			ComputeShader effect,
-			IntPtr technique,
+			ComputeTechnique technique,
 			IntPtr pass
 		)
 		{
@@ -28,12 +28,6 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public void Apply()
 		{
-			//if (parentTechnique != parentEffect.CurrentTechnique.TechniquePointer)
-			//{
-			//	throw new InvalidOperationException(
-			//		"Applied a pass not in the current technique!"
-			//	);
-			//}
 			FNA3D.FX11_Effect_Pass_Apply(parentEffect.GraphicsDevice.GLDevice, this.pass);
 		}
 	}

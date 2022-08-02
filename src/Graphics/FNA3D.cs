@@ -1280,10 +1280,15 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		#region FX11_Reflect
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void FX11_Effect_GetDesc(
+		public static extern void FX11_Effect_CreateReflectionData(
 				IntPtr effect,
 				out ComputeShader.EffectDesc result
 			);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_ReleaseReflectionData(
+			ref ComputeShader.EffectDesc result
+		);
 		#endregion
 	}
 }

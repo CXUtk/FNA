@@ -23,7 +23,7 @@ namespace Microsoft.Xna.Framework.Graphics
 		{
 			get
 			{
-				return elements[index];
+				return techniquesList[index];
 			}
 		}
 
@@ -31,14 +31,11 @@ namespace Microsoft.Xna.Framework.Graphics
 		{
 			get
 			{
-				foreach (ComputeTechnique elem in elements)
+				if (elements.TryGetValue(name, out var value))
 				{
-					if (name.Equals(elem.Name))
-					{
-						return elem;
-					}
+					return value;
 				}
-				return null; // FIXME: ArrayIndexOutOfBounds? -flibit
+				throw new ArgumentException($"Parameter '{name}' does not exist");
 			}
 		}
 
@@ -46,7 +43,8 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		#region Private Variables
 
-		private List<ComputeTechnique> elements;
+		private List<ComputeTechnique> techniquesList;
+		private Dictionary<string, ComputeTechnique> elements;
 
 		#endregion
 
@@ -54,7 +52,12 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		internal ComputeTechniqueCollection(List<ComputeTechnique> value)
 		{
-			elements = value;
+			techniquesList = value;
+			elements = new Dictionary<string, ComputeTechnique>();
+			foreach (ComputeTechnique elem in value)
+			{
+				elements.Add(elem.Name, elem);
+			}
 		}
 
 		#endregion
@@ -63,7 +66,7 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public List<ComputeTechnique>.Enumerator GetEnumerator()
 		{
-			return elements.GetEnumerator();
+			return elements.Values.ToList().GetEnumerator();
 		}
 
 		#endregion
@@ -72,14 +75,13 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
-			return elements.GetEnumerator();
+			return elements.Values.ToList().GetEnumerator();
 		}
 
 		IEnumerator<ComputeTechnique> System.Collections.Generic.IEnumerable<ComputeTechnique>.GetEnumerator()
 		{
-			return elements.GetEnumerator();
+			return elements.Values.ToList().GetEnumerator();
 		}
-
 		#endregion
 	}
 }

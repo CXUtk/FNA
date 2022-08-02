@@ -24,7 +24,6 @@ namespace Microsoft.Xna.Framework.Graphics
 		#region Internal Properties
 		internal ComputeShader parentEffect;
 		internal IntPtr techniquePointer;
-
 		#endregion
 
 		#region Internal Constructor
@@ -32,16 +31,19 @@ namespace Microsoft.Xna.Framework.Graphics
 		internal ComputeTechnique(
 			string name,
 			ComputeShader parentEffect,
-			IntPtr technique,
-			ComputePassCollection passes
+			IntPtr technique
 		) {
 			Name = name;
 			this.parentEffect = parentEffect;
 			techniquePointer = technique;
-			Passes = passes;
 		}
 
 		#endregion
+
+		internal void SetPasses(List<ComputePass> passes)
+		{
+			Passes = new ComputePassCollection(passes);
+		}
 
 	}
 }

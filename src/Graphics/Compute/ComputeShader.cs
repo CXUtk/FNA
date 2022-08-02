@@ -30,29 +30,16 @@ namespace Microsoft.Xna.Framework.Graphics
 
 			parseData();
 		}
-		public EffectDesc Test()
-		{
-			FNA3D.FX11_Effect_GetDesc(glComputeShader, out var res);
-			return res;
-		}
 
 		private unsafe void parseData()
 		{
-			FNA3D.FX11_Effect_GetDesc(glComputeShader, out var res);
+			FNA3D.FX11_Effect_CreateReflectionData(glComputeShader, out EffectDesc res);
 			List<ComputeTechnique> techniques = new List<ComputeTechnique>((int)res.ShaderDesc.Techniques);
 			var techs = (D3DX11_TECHNIQUE_DESC*)res.Techniques;
 			var ptechs = (IntPtr*)res.PTechniques;
 			for (int i = 0; i < res.ShaderDesc.Techniques; i++)
 			{
-				var t = techs[i];
-				var name = Marshal.PtrToStringAnsi(t.Name);
-				List<ComputePass> passes = new List<ComputePass>((int)t.Passes);
-				var pass = (D3DX11_PASS_DESC*)((IntPtr*)res.Passes)[i];
-				for (int j = 0; j < t.Passes; j++)
-				{
-					passes.Add(new ComputePass(Marshal.PtrToStringAnsi(pass[j].Name), this, ptechs[i], ((IntPtr**)res.PPasses)[i][j]));
-				}
-				techniques.Add(new ComputeTechnique(name, this, ptechs[i], new ComputePassCollection(passes)));
+				techniques.Add(CreateTechnique(i, techs[i], ptechs[i], res));
 			}
 			Techniques = new ComputeTechniqueCollection(techniques);
 
@@ -65,7 +52,25 @@ namespace Microsoft.Xna.Framework.Graphics
 				parameters.Add(new ComputeParameter(Marshal.PtrToStringAnsi(param[i].Name), Marshal.PtrToStringAnsi(paramTypes[i].TypeName), this, pparam[i]));
 			}
 			Parameters = new ComputeParameterCollection(parameters);
+
+			FNA3D.FX11_Effect_ReleaseReflectionData(ref res);
 		}
+
+		private unsafe ComputeTechnique CreateTechnique(int i, in D3DX11_TECHNIQUE_DESC tech, IntPtr pTechnique, in EffectDesc desc)
+		{
+			var name = Marshal.PtrToStringAnsi(tech.Name);
+			var technique = new ComputeTechnique(name, this, pTechnique);
+
+			List<ComputePass> passes = new List<ComputePass>((int)tech.Passes);
+			var pass = (D3DX11_PASS_DESC*)((IntPtr*)desc.Passes)[i];
+			for (int j = 0; j < tech.Passes; j++)
+			{
+				passes.Add(new ComputePass(Marshal.PtrToStringAnsi(pass[j].Name), this, technique, ((IntPtr**)desc.PPasses)[i][j]));
+			}
+			technique.SetPasses(passes);
+			return technique;
+		}
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct FLOAT4
 		{
