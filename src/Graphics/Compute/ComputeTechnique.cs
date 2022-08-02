@@ -9,6 +9,7 @@
 
 #region Using Statements
 using System;
+using System.Collections.Generic;
 #endregion
 
 namespace Microsoft.Xna.Framework.Graphics
@@ -16,6 +17,8 @@ namespace Microsoft.Xna.Framework.Graphics
 	public sealed class ComputeTechnique
 	{
 		#region Public Properties
+		public string Name { get; private set; }
+		public ComputePassCollection Passes { get; private set; }
 		#endregion
 
 		#region Internal Properties
@@ -27,20 +30,18 @@ namespace Microsoft.Xna.Framework.Graphics
 		#region Internal Constructor
 
 		internal ComputeTechnique(
+			string name,
 			ComputeShader parentEffect,
-			IntPtr technique
+			IntPtr technique,
+			ComputePassCollection passes
 		) {
+			Name = name;
 			this.parentEffect = parentEffect;
 			techniquePointer = technique;
+			Passes = passes;
 		}
 
 		#endregion
 
-
-		public ComputePass GetPassByName(string name)
-		{
-			IntPtr pass = FNA3D.FX11_Effect_Technique_GetPassByName(techniquePointer, name);
-			return new ComputePass(parentEffect, techniquePointer, pass);
-		}
 	}
 }

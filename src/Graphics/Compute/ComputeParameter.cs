@@ -9,11 +9,15 @@ namespace Microsoft.Xna.Framework.Graphics
 {
 	public class ComputeParameter
 	{
+		public string Name { get; private set; }
+		public string TypeName { get; private set; }
 		internal IntPtr variablePtr;
 		internal ComputeShader parentEffect;
 
-		public ComputeParameter(ComputeShader effect, IntPtr variablePtr)
+		public ComputeParameter(string name, string typeName, ComputeShader effect, IntPtr variablePtr)
 		{
+			Name = name;
+			TypeName = typeName;
 			this.parentEffect = effect;
 			this.variablePtr = variablePtr;
 		}
@@ -43,22 +47,22 @@ namespace Microsoft.Xna.Framework.Graphics
 			FNA3D.FX11_Effect_Variable_SetShaderResourceView_Texture(variablePtr, texture.texture);
 		}
 
-		public void SetInt(int value)
+		public void SetValue(int value)
 		{
 			FNA3D.FX11_Effect_Variable_SetInt(variablePtr, value);
 		}
 
-		public void SetFloat(float value)
+		public void SetValue(float value)
 		{
 			FNA3D.FX11_Effect_Variable_SetFloat(variablePtr, value);
 		}
 
-		public void SetBool(bool value)
+		public void SetValue(bool value)
 		{
 			FNA3D.FX11_Effect_Variable_SetBool(variablePtr, value);
 		}
 
-		public void SetIntArray(int[] value)
+		public void SetValue(int[] value)
 		{
 			// Currently using this ugly approach, we will switch to directly write if new effect system is ready
 			IntPtr intBuf = Marshal.AllocHGlobal(value.Length * Marshal.SizeOf<int>());
@@ -74,7 +78,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			Marshal.FreeHGlobal(intBuf);
 		}
 
-		public void SetFloatArray(float[] value)
+		public void SetValue(float[] value)
 		{
 			// Currently using this ugly approach, we will switch to directly write if new effect system is ready
 			IntPtr floatBuf = Marshal.AllocHGlobal(value.Length * Marshal.SizeOf<float>());
@@ -90,12 +94,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			Marshal.FreeHGlobal(floatBuf);
 		}
 
-		public void SetBoolArray(bool value)
-		{
-			FNA3D.FX11_Effect_Variable_SetBool(variablePtr, value);
-		}
-
-		public void SetVector2(Vector2 value)
+		public void SetValue(Vector2 value)
 		{
 			// Currently using this ugly approach, we will switch to directly write if new effect system is ready
 			IntPtr floatBuf = Marshal.AllocHGlobal(4 * Marshal.SizeOf<float>());
@@ -109,7 +108,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			Marshal.FreeHGlobal(floatBuf);
 		}
 
-		public void SetVector3(Vector3 value)
+		public void SetValue(Vector3 value)
 		{
 			// Currently using this ugly approach, we will switch to directly write if new effect system is ready
 			IntPtr floatBuf = Marshal.AllocHGlobal(4 * Marshal.SizeOf<float>());
@@ -124,7 +123,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			Marshal.FreeHGlobal(floatBuf);
 		}
 
-		public void SetVector4(Vector4 value)
+		public void SetValue(Vector4 value)
 		{
 			// Currently using this ugly approach, we will switch to directly write if new effect system is ready
 			IntPtr floatBuf = Marshal.AllocHGlobal(4 * Marshal.SizeOf<float>());
@@ -140,7 +139,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			Marshal.FreeHGlobal(floatBuf);
 		}
 
-		public void SetMatrix(Matrix value)
+		public void SetValue(Matrix value)
 		{
 			IntPtr floatBuf = Marshal.AllocHGlobal(16 * Marshal.SizeOf<float>());
 			// FIXME: All Matrix sizes... this will get ugly. -flibit

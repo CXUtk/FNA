@@ -14,7 +14,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.Xna.Framework.Graphics
 {
-	public sealed class ComputeParameterCollection : IEnumerable<EffectParameter>, IEnumerable
+	public sealed class ComputeParameterCollection : IEnumerable<ComputeParameter>, IEnumerable
 	{
 		#region Public Properties
 
@@ -26,7 +26,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			}
 		}
 
-		public EffectParameter this[int index]
+		public ComputeParameter this[int index]
 		{
 			get
 			{
@@ -34,11 +34,11 @@ namespace Microsoft.Xna.Framework.Graphics
 			}
 		}
 
-		public EffectParameter this[string name]
+		public ComputeParameter this[string name]
 		{
 			get
 			{
-				foreach (EffectParameter elem in elements)
+				foreach (ComputeParameter elem in elements)
 				{
 					if (name.Equals(elem.Name))
 					{
@@ -53,13 +53,13 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		#region Private Variables
 
-		private List<EffectParameter> elements;
+		private List<ComputeParameter> elements;
 
 		#endregion
 
 		#region Internal Constructor
 
-		internal ComputeParameterCollection(List<EffectParameter> value)
+		internal ComputeParameterCollection(List<ComputeParameter> value)
 		{
 			elements = value;
 		}
@@ -68,22 +68,22 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		#region Public Methods
 
-		public List<EffectParameter>.Enumerator GetEnumerator()
+		public List<ComputeParameter>.Enumerator GetEnumerator()
 		{
 			return elements.GetEnumerator();
 		}
 
-		public EffectParameter GetParameterBySemantic(string semantic)
-		{
-			foreach (EffectParameter elem in elements)
-			{
-				if (semantic.Equals(elem.Semantic))
-				{
-					return elem;
-				}
-			}
-			return null;
-		}
+		//public ComputeParameter GetParameterBySemantic(string semantic)
+		//{
+		//	foreach (ComputeParameter elem in elements)
+		//	{
+		//		if (semantic.Equals(elem.Semantic))
+		//		{
+		//			return elem;
+		//		}
+		//	}
+		//	return null;
+		//}
 
 		#endregion
 
@@ -94,7 +94,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			return elements.GetEnumerator();
 		}
 
-		IEnumerator<EffectParameter> System.Collections.Generic.IEnumerable<EffectParameter>.GetEnumerator()
+		IEnumerator<ComputeParameter> System.Collections.Generic.IEnumerable<ComputeParameter>.GetEnumerator()
 		{
 			return elements.GetEnumerator();
 		}

@@ -8,16 +8,19 @@ namespace Microsoft.Xna.Framework.Graphics
 {
 	public class ComputePass
 	{
+		public string Name { get; private set; }
 		private ComputeShader parentEffect;
 		private IntPtr parentTechnique;
 		internal IntPtr pass;
 
 		internal ComputePass(
+			string name,
 			ComputeShader effect,
 			IntPtr technique,
 			IntPtr pass
 		)
 		{
+			Name = name;
 			this.parentEffect = effect;
 			this.parentTechnique = technique;
 			this.pass = pass;

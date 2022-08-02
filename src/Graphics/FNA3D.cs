@@ -1277,5 +1277,13 @@ namespace Microsoft.Xna.Framework.Graphics
 		);
 
 		#endregion
+
+		#region FX11_Reflect
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void FX11_Effect_GetDesc(
+				IntPtr effect,
+				out ComputeShader.EffectDesc result
+			);
+		#endregion
 	}
 }

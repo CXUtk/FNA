@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net6.0</TargetFrameworks>
 		<Platforms>AnyCPU</Platforms>
@@ -138,9 +138,11 @@
 		<Compile Include="src\Graphics\Compute\ComputeBufferType.cs" />
 		<Compile Include="src\Graphics\Compute\ComputeParameter.cs" />
 		<Compile Include="src\Graphics\Compute\ComputePass.cs" />
+		<Compile Include="src\Graphics\Compute\ComputePassCollection.cs" />
 		<Compile Include="src\Graphics\Compute\ComputeShader.cs" />
 		<Compile Include="src\Graphics\Compute\ComputeParameterCollection.cs" />
 		<Compile Include="src\Graphics\Compute\ComputeTechnique.cs" />
+		<Compile Include="src\Graphics\Compute\ComputeTechniqueCollection.cs" />
 		<Compile Include="src\ThreadCheck.cs" />
 		<Compile Include="src\FNALoggerEXT.cs" />
 		<Compile Include="src\FNAPlatform\FNAPlatform.cs" />
