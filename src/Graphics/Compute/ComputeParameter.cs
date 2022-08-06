@@ -24,19 +24,19 @@ namespace Microsoft.Xna.Framework.Graphics
 
 		public void SetRWBuffer(ComputeBuffer buffer)
 		{
-			FNA3D.FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(variablePtr, buffer.buffer);
+			FNA3D.FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(variablePtr, buffer == null ? IntPtr.Zero : buffer.buffer);
 		}
 
 		public void SetBuffer(ComputeBuffer buffer)
 		{
-			FNA3D.FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(variablePtr, buffer.buffer);
+			FNA3D.FX11_Effect_Variable_SetShaderResourceView_ComputeBuffer(variablePtr, buffer == null ? IntPtr.Zero : buffer.buffer);
 		}
 
 		public void SetRWTexture(Texture texture)
 		{
-			if (texture.IsRandomAccess)
+			if (texture == null || texture.IsRandomAccess)
 			{
-				FNA3D.FX11_Effect_Variable_SetUnorderedAccessView_ComputeBuffer(variablePtr, texture.texture);
+				FNA3D.FX11_Effect_Variable_SetUnorderedAccessView_Texture(variablePtr, texture == null ? IntPtr.Zero : texture.texture);
 				return;
 			}
 			throw new InvalidOperationException("SetRWTexture2D only accept textures that have random access enabled");
